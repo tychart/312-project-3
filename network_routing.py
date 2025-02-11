@@ -26,7 +26,33 @@ def find_shortest_path_with_heap(
     ## The left child of a node at index i is at index 2i + 1
     ## The right child of a node at index i is at index 2i + 2
     ## The parent of a node at index i is at index (i - 1) // 2
-    
+
+    heap = []
+
+    dist = {
+        'A': 'inf',
+        'B': 'inf'
+    }
+
+    heap_dict = {
+        1: 'A',
+        2: 'B',
+        3: 'C',
+        4: 'D',
+        5: 'E',
+        6: 'F',
+        7: 'G',
+    }
+
+    pointer_dict = {
+        'A': '-',
+        'B': 2,
+        'C': 3,
+        'D': 4,
+        'E': 5,
+        'F': 6,
+        'G': '-',
+    }
 
 
 def find_shortest_path_with_array(
