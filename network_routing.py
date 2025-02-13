@@ -75,4 +75,4 @@ def find_shortest_path_with_array(
         'B': 'inf'
     }
 
-    Q = 
+    # Q = 
