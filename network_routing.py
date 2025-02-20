@@ -1,3 +1,5 @@
+import plotting
+
 def find_shortest_path_with_heap(
         graph: dict[int, dict[int, float]],
         source: int,
@@ -69,10 +71,54 @@ def find_shortest_path_with_array(
         - the cost of the path
     """
 
+    print(f"Graph: {graph}")
+    print(f"Source: {source}")
+    print(f"Target: {target}")
+
+    visited = [source]
+    print(f"Visited: {visited}")
+
+    distances = {node: float('inf') for node in graph.keys()}
+    distances[source] = 0
+    print(f"Distances: {distances}")
+
+    previous = {node: None for node in graph.keys()}
+    print(f"Previous: {previous}")
+
+    curr_node = source
+
+    while len(visited) < len(graph):
+        
+
+
+        for neighbor in graph[curr_node]:
+            if distances[curr_node] + graph[curr_node][neighbor] < distances[neighbor]:
+                distances[neighbor] = distances[curr_node] + graph[curr_node][neighbor]
+                previous[neighbor] = curr_node
+        
+        print(f"Distances: {distances}")
+        print(f"Previous: {previous}")
+
+
+        # Find the node with the smallest distance
+        smallest_dist = float('inf')
+        for node in visited:
+            for neighbor in graph[node]:
+                if neighbor not in visited and graph[node][neighbor] < smallest_dist:
+                    smallest_dist = graph[node][neighbor]
+                    curr_node = neighbor
+        
+        visited.append(curr_node)
+        print(f"Visited: {visited}")
+
+    # plotting.plot_points(graph)
+
     # Q array
     dist = {
         'A': 'inf',
         'B': 'inf'
     }
+
+    return [[0, 2, 5, 9], 1.0]  # Dummy return value
 
     # Q = 

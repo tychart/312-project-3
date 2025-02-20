@@ -61,17 +61,17 @@ def main(seed: int, size: int, density: float, noise: float, source: int, target
     circle_point(positions[source], c='r')
     circle_point(positions[target], c='b')
 
-    start = time()
-    path, cost = find_shortest_path_with_heap(weights, source, target)
-    end = time()
-    heap_time = end - start
-    print()
-    print('-- Heap --')
-    print('Path:', path)
-    print('Cost:', cost)
-    print('Time:', heap_time)
+    # start = time()
+    # path, cost = find_shortest_path_with_heap(weights, source, target)
+    # end = time()
+    # heap_time = end - start
+    # print()
+    # print('-- Heap --')
+    # print('Path:', path)
+    # print('Cost:', cost)
+    # print('Time:', heap_time)
 
-    draw_path(positions, path)
+    # draw_path(positions, path)
 
     start = time()
     path, cost = find_shortest_path_with_array(weights, source, target)
@@ -82,6 +82,9 @@ def main(seed: int, size: int, density: float, noise: float, source: int, target
     print('Path:', path)
     print('Cost:', cost)
     print('Time:', array_time)
+
+    draw_path(positions, path)  ## This is temp while the heap is not implemented
+    heap_time = 0 ## This is temp while the heap is not implemented
 
     title(f'Cost: {cost}, Heap: {round(heap_time, 4)}, Array: {round(array_time, 4)}')
     show_plot()
