@@ -71,33 +71,33 @@ def find_shortest_path_with_array(
         - the cost of the path
     """
 
-    print(f"Graph: {graph}")
-    print(f"Source: {source}")
-    print(f"Target: {target}")
+    # print(f"Graph: {graph}")
+    # print(f"Source: {source}")
+    # print(f"Target: {target}")
 
     visited = [source]
-    print(f"Visited: {visited}")
+    # print(f"Visited: {visited}")
 
     distances = {node: float('inf') for node in graph.keys()}
     distances[source] = 0
-    print(f"Distances: {distances}")
+    # print(f"Distances: {distances}")
 
     previous = {node: None for node in graph.keys()}
-    print(f"Previous: {previous}")
+    # print(f"Previous: {previous}")
 
     curr_node = source
 
     while len(visited) < len(graph):
         
-
+        # print(f"Now processing node: {curr_node}")
 
         for neighbor in graph[curr_node]:
             if distances[curr_node] + graph[curr_node][neighbor] < distances[neighbor]:
                 distances[neighbor] = distances[curr_node] + graph[curr_node][neighbor]
                 previous[neighbor] = curr_node
         
-        print(f"Distances: {distances}")
-        print(f"Previous: {previous}")
+        # print(f"Distances: {distances}")
+        # print(f"Previous: {previous}")
 
 
         # Find the node with the smallest distance
@@ -109,9 +109,14 @@ def find_shortest_path_with_array(
                     curr_node = neighbor
         
         visited.append(curr_node)
-        print(f"Visited: {visited}")
+        # print(f"Visited: {visited}")
 
     # plotting.plot_points(graph)
+
+    
+    path = trace_previous_list(previous, source, target)
+
+    return path, distances[target]
 
     # Q array
     dist = {
@@ -122,3 +127,15 @@ def find_shortest_path_with_array(
     return [[0, 2, 5, 9], 1.0]  # Dummy return value
 
     # Q = 
+
+def trace_previous_list(previous: dict[int, int], source: int, target: int) -> list[int]:
+    """
+    Trace the path from `source` to `target` using the `previous` dictionary.
+
+    Return:
+        - the list of nodes (including `source` and `target`)
+    """
+    path = [target]
+    while path[-1] != source:
+        path.append(previous[path[-1]])
+    return list(reversed(path))
