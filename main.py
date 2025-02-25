@@ -121,13 +121,13 @@ def main(seed: int, size: int, density: float, noise: float, source: int, target
     book_source = 0
     book_target = 3
 
-    positions, test_graph = generate_graph(312, 1000, 0.2, 0.05)
+    # positions, test_graph = generate_graph(312, 1000, 0.2, 0.05)
 
     print(f"Positions: {positions}")
     plot_weights(book_positions, book_graph)
 
-    # path, cost = find_shortest_path_with_array(book_graph, book_source, book_target)
-    path, cost = find_shortest_path_with_array(test_graph, 0, -1)
+    path, cost = find_shortest_path_with_array(book_graph, book_source, book_target)
+    # path, cost = find_shortest_path_with_array(test_graph, 2, 9)
     
     
     end = time()
