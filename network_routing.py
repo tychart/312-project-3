@@ -343,7 +343,7 @@ def dijkstra_algorithm(
         pq_class: type[BasePriorityQueue] = ArrayPriorityQueue
 ) -> tuple[list[int], float]:
     
-    print(f"Started dijkstra_algorithm using pq_class: {pq_class}")
+    # print(f"Started dijkstra_algorithm using pq_class: {pq_class}")
 
     distances = {node: float('inf') for node in graph}
     distances[source] = 0
@@ -356,8 +356,6 @@ def dijkstra_algorithm(
     while not pq.is_empty():
         curr_node, current_dist = pq.extract_min()
         
-        # print(f"Current distance: {current_dist} Current node: {curr_node}")
-
         if curr_node in visited:
             continue
         visited.add(curr_node)
