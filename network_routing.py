@@ -243,12 +243,42 @@ class HeapPriorityQueue(BasePriorityQueue):
 
         # heapq.heappush(self.heap, (distance, node))
         
-    def extract_min(self):
+    def extract_min(self) -> tuple[int, float]:
         
-        retNode, retDist = self.heap[0]
-        
+        if not self.heap:
+            raise IndexError("extract_min() called on an empty heap")
 
+        ret_node = self.heap[0] # # Store the root node (smallest element)
         
+## The heap is a binary tree, so we can represent it as an array
+## The root is at index 0
+## The left child of a node at index i is at index 2i + 1
+## The right child of a node at index i is at index 2i + 2
+## The parent of a node at index i is at index (i - 1) // 2
+
+        if len(self.heap) == 1:
+            # Only one element in the heap; remove and return it
+            ret_node = self.heap.pop()
+            return ret_node.name, ret_node.distance
+
+        self.heap[0] = self.heap.pop()  # Replace the root with the last element
+
+        # Bubble down
+        curr_index = 0 # start at root
+
+        # Repeat until we reach the last level and at least the left child exists
+        while 2 * curr_index + 1 < len(self.heap): 
+            smallest_child_index = self.get_smallest_child_index(curr_index)
+
+            if self.heap[curr_index].distance <= self.heap[smallest_child_index].distance:
+                break  # Heap property is restored and there is now not any need to keep going
+
+            self.heap[curr_index], self.heap[smallest_child_index] = self.heap[smallest_child_index], self.heap[curr_index]
+            curr_index = smallest_child_index
+
+        return ret_node.name, ret_node.distance
+
+
         # Bubble down
         # Compare the 2 children to find the minimum
         # Compare the minimum child to the parent
@@ -271,11 +301,25 @@ class HeapPriorityQueue(BasePriorityQueue):
         #return retNodeDist[0], retNodeDist[1]
         # return heapq.heappop(self.heap)
         
-        return heapq.heappop(self.heap)
 
 
 
+        # return heapq.heappop(self.heap)
+    
+    def is_empty(self) -> bool:
+        return not self.heap
 
+    def get_smallest_child_index(self, curr_index):
+        left_index = 2 * curr_index + 1
+        right_index = 2 * curr_index + 2
+
+        if right_index == len(self.heap):
+            return left_index
+
+        if self.heap[left_index].distance < self.heap[right_index].distance:
+            return left_index
+        else:
+            return right_index
 
 
 
@@ -312,7 +356,7 @@ def dijkstra_algorithm(
     while not pq.is_empty():
         curr_node, current_dist = pq.extract_min()
         
-        print(f"Current distance: {current_dist} Current node: {curr_node}")
+        # print(f"Current distance: {current_dist} Current node: {curr_node}")
 
         if curr_node in visited:
             continue
@@ -322,7 +366,7 @@ def dijkstra_algorithm(
             break
             
         for neighbor, weight in graph[curr_node].items():
-            print(f"Neighbor: {neighbor} Weight: {weight}")
+            # print(f"Neighbor: {neighbor} Weight: {weight}")
             if neighbor in visited:
                 continue
             new_dist = current_dist + weight

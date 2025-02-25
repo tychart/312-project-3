@@ -32,37 +32,37 @@ def large_test(finder):
     assert round(cost, 2) == 1.12
 
 
-# @max_score(2)
-# @with_import('network_routing')
-# def test_tiny_network_heap(find_shortest_path_with_heap):
-#     tiny_test(find_shortest_path_with_heap)
-
-
 @max_score(2)
 @with_import('network_routing')
-def test_tiny_network_array(find_shortest_path_with_array):
-    tiny_test(find_shortest_path_with_array)
+def test_tiny_network_heap(find_shortest_path_with_heap):
+    tiny_test(find_shortest_path_with_heap)
 
 
-# @max_score(5)
+# @max_score(2)
 # @with_import('network_routing')
-# def test_small_network_heap(find_shortest_path_with_heap):
-#     small_test(find_shortest_path_with_heap)
+# def test_tiny_network_array(find_shortest_path_with_array):
+#     tiny_test(find_shortest_path_with_array)
 
 
 @max_score(5)
 @with_import('network_routing')
-def test_small_network_array(find_shortest_path_with_array):
-    small_test(find_shortest_path_with_array)
+def test_small_network_heap(find_shortest_path_with_heap):
+    small_test(find_shortest_path_with_heap)
 
 
-# @max_score(8)
+# @max_score(5)
 # @with_import('network_routing')
-# def test_large_network_heap(find_shortest_path_with_heap):
-#     large_test(find_shortest_path_with_heap)
+# def test_small_network_array(find_shortest_path_with_array):
+#     small_test(find_shortest_path_with_array)
 
 
 @max_score(8)
 @with_import('network_routing')
-def test_large_network_array(find_shortest_path_with_array):
-    large_test(find_shortest_path_with_array)
+def test_large_network_heap(find_shortest_path_with_heap):
+    large_test(find_shortest_path_with_heap)
+
+
+# @max_score(8)
+# @with_import('network_routing')
+# def test_large_network_array(find_shortest_path_with_array):
+#     large_test(find_shortest_path_with_array)

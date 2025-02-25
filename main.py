@@ -61,20 +61,6 @@ def main(seed: int, size: int, density: float, noise: float, source: int, target
     circle_point(positions[source], c='r')
     circle_point(positions[target], c='b')
 
-    # start = time()
-    # path, cost = find_shortest_path_with_heap(weights, source, target)
-    # end = time()
-    # heap_time = end - start
-    # print()
-    # print('-- Heap --')
-    # print('Path:', path)
-    # print('Cost:', cost)
-    # print('Time:', heap_time)
-
-    # draw_path(positions, path)
-
-    start = time()
-    # path, cost = find_shortest_path_with_array(weights, source, target)
 
     test_weights_graph = {
         0: {4: 0.6368876671279146, 5: 1.1897652785076027, 3: 0.4374171348162189, 0: 0.0, 1: 1.600589011692469, 7: 0.7244746277575653, 8: 0.982352350964381}, 
@@ -119,14 +105,50 @@ def main(seed: int, size: int, density: float, noise: float, source: int, target
     }
 
     book_source = 0
-    book_target = 3
+    book_target = 4
+
+    tiny_test_graph = {
+        0: {1: 2, 2: 1, 3: 4},
+        1: {0: 2, 2: 1, 3: 1},
+        2: {0: 4, 1: 4},
+        3: {0: 3, 1: 2, 2: 1}
+    }
+
+    ttg_source = 0
+    ttg_target = 3
+
+
+
+
+
+
+
+    start = time()
+    # path, cost = find_shortest_path_with_heap(weights, source, target)
+    # path, cost = find_shortest_path_with_heap(book_graph, book_source, book_target)
+    path, cost = find_shortest_path_with_heap(tiny_test_graph, ttg_source, ttg_target)
+    end = time()
+    heap_time = end - start
+    print()
+    print('-- Heap --')
+    print('Path:', path)
+    print('Cost:', cost)
+    print('Time:', heap_time)
+
+    # draw_path(positions, path)
+
+    start = time()
+    # path, cost = find_shortest_path_with_array(weights, source, target)
+
+
 
     # positions, test_graph = generate_graph(312, 1000, 0.2, 0.05)
 
     print(f"Positions: {positions}")
     plot_weights(book_positions, book_graph)
 
-    path, cost = find_shortest_path_with_array(book_graph, book_source, book_target)
+    path, cost = find_shortest_path_with_array(tiny_test_graph, ttg_source, ttg_target)
+    # path, cost = find_shortest_path_with_array(book_graph, book_source, book_target)
     # path, cost = find_shortest_path_with_array(test_graph, 2, 9)
     
     
